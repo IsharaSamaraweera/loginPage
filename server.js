@@ -44,7 +44,23 @@ app.put('/users/:id', (req, res) => {
 app.delete('/users/:id', (req, res) => {
 });
 
-
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find(u => u.username === username && u.password === password);
+  
+    if (user) {
+      const Token = 'dummy_token';
+      const userDetails = {
+        id: user.id,
+        username: user.username,
+        name: user.name,
+      };
+  
+      res.json({ user: userDetails, Token });
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
