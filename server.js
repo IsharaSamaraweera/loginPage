@@ -57,11 +57,12 @@ app.post('/login', (req, res) => {
       };
   
       res.json({ user: userDetails, Token });
-    } else {
+    } 
+    else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
-  });
+});
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log('Server running on port ${PORT}');
 });
